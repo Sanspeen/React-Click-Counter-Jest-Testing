@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import CounterComponent from "./components/CounterComponent"
+import { useState } from "react";
 
 function App() {
+  
+  const initialState = 0;
+  const [counter, setCounter] = useState(initialState);
+
+  const handleAdd = () =>{
+    setCounter(counter + 1);
+  }
+
+  const handleSubstract = () =>{
+    setCounter(counter - 1);
+  }
+
+  const handleReset = () => {
+    setCounter(initialState)
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <CounterComponent counter = {counter}></CounterComponent>
+      <button className="btn btn-primary" onClick = {handleAdd}>+1</button>
+      <button className="btn btn-primary" onClick = {handleReset}>RESET</button>
+      <button className="btn btn-primary" onClick = {handleSubstract}>-1</button>
+    </>
   );
 }
 
